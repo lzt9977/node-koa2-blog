@@ -1,0 +1,86 @@
+<%- include("header",{type:'all'}) %>
+	<!-- <header>
+		<div class="user_name">
+			writer <%= a %>
+		</div>
+    </header> -->
+    <div class="simplemde-menu">
+        <div class="go-box">
+            <a href="/" class="go-home">回首页</a>
+        </div>
+        <div class="addAnthology">
+            <div class="_33Zlg"><i class="fa fa-plus"></i><span>新建文集</span></div>
+        </div>
+        <ul class="_3MbJ4 _3t059">
+            <li class="_3DM7w _31PCv" title="日记本">
+                <div class="_3P4JX _2VLy-">
+                    <i class="fa fa-gear"></i>
+                    <span>
+                        <ul class="_2V8zt _3FcHm _2w9pn">
+                            <li class="_2po2r cRfUr" title="">
+                                <i class="fa fa-pencil-square-o _22XWG"></i>修改文集
+                            </li>
+                            <li class="_2po2r cRfUr" title="">
+                                <i class="fa fa-trash-o _22XWG"></i>删除文集
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+                <span>日记本</span>
+            </li>
+            <li class="_3DM7w" title="随笔">
+                <span>随笔</span>
+            </li>
+            <li class="_3DM7w" title="风之屿">
+                <span>风之屿</span>
+            </li>
+        </ul>
+        <div role="button" class="ant-col-4 h-5Am">
+            <span class="ant-dropdown-trigger"><i class="fa fa-bars"></i><span>设置</span></span>
+            <span class="Yv5Zx">遇到问题<i class="fa fa-question-circle-o"></i></span>
+        </div>
+    </div>
+    <div class="simplemde-title">
+        <div class="add-Article">
+            <div class="_1GsW5"><i class="fa fa-plus-circle"></i><span> 新建文章</span></div>
+        </div>
+        <ul class="_2TxA-">
+            <li class="_25Ilv _33nt7" title="写作仓库(2017/2/7)">
+                <i class="_13kgp"></i>
+                <span class="NariC">写作仓库(2017/2/7)</span>
+                <span class="hLzJv">在读《黄金时代》思路记录自己的想法 故事 梦</span>
+            </li>
+        </ul>   
+    </div>
+    <div class="simplemde">
+        <span id="Preservation">保存文章</span>
+        <textarea id="mySimplemde"></textarea>
+    </div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <link rel="stylesheet" href="/styles/writer.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script>
+        var simplemde = new SimpleMDE({
+            autofocus: true,
+            autosave: {
+                enabled: true,
+                uniqueId: "MyUniqueID",
+                delay: 1000,
+            },
+            hideIcons: ['fullscreen'],
+            element: document.getElementById("mySimplemde"),
+        })
+
+        $("#Preservation").on("click",function (){
+            console.log(simplemde.value());
+        })
+
+        $(".fa-gear").on("click",function (ev){
+            $(this).parents("._3P4JX").find("ul").toggle();
+            ev.stopPropagation();
+        })
+        $("body").on("click",function (){
+            $("._3P4JX").find("ul").hide();
+        })
+    </script>
+<% include footer %>

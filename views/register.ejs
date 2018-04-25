@@ -1,0 +1,88 @@
+<%- include("header",{type:'signup'}) %>
+<link rel="stylesheet" href="/styles/sign.css">
+	<div class="container sign">
+		<div class="logo"><a href="/"><img src="/images/logo.png" alt="Logo"></a></div>
+		<div class="main">
+			<h4 class="title">
+				<div class="normal-title">
+					<a class="" href="/login">登录</a>
+					<b>·</b>
+					<a id="js-sign-up-btn" class="active" href="/register">注册</a>
+				</div>
+			</h4>
+			<div class="js-sign-up-container">
+				<form class="new_user" id="new_user" >
+					<div class="input-prepend restyle">
+							<input placeholder="你的昵称" type="text" value="" name="nickname" id="user_nickname">
+							<i class="iconfont ic-user"></i>
+					</div>
+					<div class="input-prepend restyle no-radius js-normal">
+							<input placeholder="手机号" type="tel" name="mobile" id="user_mobile_number">
+							<i class="iconfont ic-phonenumber"></i>
+					</div>
+					<div class="input-prepend">
+							<input placeholder="设置密码" type="password" name="password" id="user_password">
+							<i class="iconfont ic-password"></i>
+					</div>
+					<span type="submit" id="submit" class="sign-up-button">注册</span>
+					<p class="sign-up-msg">点击 “注册” 即表示您同意并愿意遵守简书<br> <a target="_blank" href="http://www.jianshu.com/p/c44d171298ce">用户协议</a> 和 <a target="_blank" href="http://www.jianshu.com/p/2ov8x3">隐私政策</a> 。</p>
+				</form>
+						<!-- 更多注册方式 -->
+				<div class="more-sign">
+					<h6>社交帐号直接注册</h6>
+					<ul>
+						<li><a class="weixin" target="_blank" href="javascript:void(0);"><i class="iconfont ic-wechat"></i></a></li>
+						<li><a class="qq" target="_blank" href="javascript:void(0);"><i class="iconfont ic-qq_connect"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<script>
+		$(function (){
+			$("#submit").on('click',function (){
+				if ($('#user_nickname').val().trim() == '') {
+					fade('请输入用户名！')
+					return
+				}
+				if($('#user_nickname').val().match(/[<'">]/g)){
+					fade('请输入合法字符！')
+					return
+				}
+				if($('#user_mobile_number').val() == ''){
+					fade('请输入手机号码！')
+					return
+				}
+
+				if($('#user_password').val() == ''){
+					fade('请输入密码！')
+					return
+				}
+			
+				$.ajax({
+					url: "/register",
+					data: {
+						nickname: $('#user_nickname').val(),
+						password: $('#user_password').val(),
+						mobile: $('#user_mobile_number').val()
+					},
+					type: "POST",
+					cache: false,
+					dataType: 'json',
+					success: function (res) {
+						if(res.code == 0){
+							setTimeout(()=>{
+								window.location.href = '/login'
+							},2000)
+						}
+						fade(res.msg)
+					},
+					error: function () {
+						fade('ajax异常')
+					}
+				})			
+		
+			})
+		})
+	</script>
+<% include footer %>
