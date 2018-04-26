@@ -27,13 +27,27 @@ module.exports = {
                     msg:'必填项不能为空'
                 };
             } else { 
-              await userModel.insertData([user.name, md5(user.pass), user.mobile, moment().format('YYYY-MM-DD HH:mm:ss')])
+              await userModel.insertData([user.name, md5(user.pass), user.mobile, moment().format('YYYY-MM-DD HH:mm:ss'), moment().format('X')])
                   .then(res=>{
                     ctx.body = {
                       code: 0,
                       msg:'注册成功'
                     };
+                    
+                    
                   })
+
+                  await userModel.findDataByName(user.name)
+                    .then(async (result) => {
+                        await userModel.createByWriterArticleMenu([result[0].id,'日记本'])
+                        .then(res=>{
+                            
+                        })
+                        await userModel.createByWriterArticleMenu([result[0].id,'随笔'])
+                        .then(res=>{
+                            
+                        })
+                    })
             }
         })
   }

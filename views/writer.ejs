@@ -1,39 +1,45 @@
 <%- include("header",{type:'all'}) %>
-	<!-- <header>
-		<div class="user_name">
-			writer <%= a %>
-		</div>
-    </header> -->
     <div class="simplemde-menu">
         <div class="go-box">
             <a href="/" class="go-home">回首页</a>
         </div>
         <div class="addAnthology">
-            <div class="_33Zlg"><i class="fa fa-plus"></i><span>新建文集</span></div>
+            <div class="_33Zlg add-anthology"><i class="fa fa-plus"></i><span>新建文集</span></div>
+            <div class="_2G97m">
+                <form class="M8J6Q _1mU5v">
+                    <input type="text" placeholder="请输入文集名..." name="name" id="anthology" class="_1CtV4">
+                    <button type="button" class="dwU8Q _3zXcJ _3QfkW submit_anthology"><span>提 交</span></button>
+                    <button type="button" class="vIzwB _3zXcJ"><span>取 消</span></button>
+                </form>
+            </div>
         </div>
-        <ul class="_3MbJ4 _3t059">
-            <li class="_3DM7w _31PCv" title="日记本">
-                <div class="_3P4JX _2VLy-">
-                    <i class="fa fa-gear"></i>
-                    <span>
-                        <ul class="_2V8zt _3FcHm _2w9pn">
-                            <li class="_2po2r cRfUr" title="">
-                                <i class="fa fa-pencil-square-o _22XWG"></i>修改文集
-                            </li>
-                            <li class="_2po2r cRfUr" title="">
-                                <i class="fa fa-trash-o _22XWG"></i>删除文集
-                            </li>
-                        </ul>
-                    </span>
-                </div>
-                <span>日记本</span>
-            </li>
-            <li class="_3DM7w" title="随笔">
-                <span>随笔</span>
-            </li>
-            <li class="_3DM7w" title="风之屿">
-                <span>风之屿</span>
-            </li>
+        <ul class="_3MbJ4 _3t059" id="anthology_ul">
+            <% writer_menu.forEach(function(menu,i){ %>
+                <% if(i == 0){ %>
+                    <li class="_3DM7w _31PCv">
+                        <div class="_3P4JX _2VLy-">
+                            <i class="fa fa-gear"></i>
+                            <span>
+                                <ul class="_2V8zt _3FcHm _2w9pn">
+                                    <li class="_2po2r cRfUr" title="">
+                                        <i class="fa fa-pencil-square-o _22XWG"></i>修改文集
+                                    </li>
+                                    <li class="_2po2r cRfUr" title="">
+                                        <i class="fa fa-trash-o _22XWG"></i>删除文集
+                                    </li>
+                                </ul>
+                            </span>
+                        </div>
+                        <span><%= menu.menu_name %></span>
+                    </li>
+                <% }else{ %>
+                    <li class="_3DM7w">
+                        <span><%= menu.menu_name %></span>
+                    </li>
+                <% }%>
+            <% }); %>
+            
+            
         </ul>
         <div role="button" class="ant-col-4 h-5Am">
             <span class="ant-dropdown-trigger"><i class="fa fa-bars"></i><span>设置</span></span>
@@ -42,20 +48,31 @@
     </div>
     <div class="simplemde-title">
         <div class="add-Article">
-            <div class="_1GsW5"><i class="fa fa-plus-circle"></i><span> 新建文章</span></div>
+            <div class="_1GsW5" id="createArticle"><i class="fa fa-plus-circle"></i><span> 新建文章</span></div>
         </div>
-        <ul class="_2TxA-">
-            <li class="_25Ilv _33nt7" title="写作仓库(2017/2/7)">
-                <i class="_13kgp"></i>
-                <span class="NariC">写作仓库(2017/2/7)</span>
-                <span class="hLzJv">在读《黄金时代》思路记录自己的想法 故事 梦</span>
-            </li>
+        <ul class="_2TxA-" id="article-list">
+            <% writer_menu_article_list.forEach(function(list,i){ %>
+                <% if(i == 0){ %>
+                    <li class="_25Ilv _33nt7">
+                        <i class="_13kgp"></i>
+                        <span class="NariC"><%= list.title %></span>
+                        <span class="hLzJv"><%= list.content %></span>
+                    </li>
+                <% }else{ %>
+                    <li class="_25Ilv ">
+                        <i class="_13kgp"></i>
+                        <span class="NariC"><%= list.title %></span>
+                        <span class="hLzJv"><%= list.content %></span>
+                    </li>
+                <% }%>
+            <% }); %>
         </ul>   
     </div>
     <div class="simplemde">
         <span id="Preservation">保存文章</span>
         <textarea id="mySimplemde"></textarea>
     </div>
+    <div class="warning"></div>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
     <link rel="stylesheet" href="/styles/writer.css">
     <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
@@ -67,7 +84,7 @@
                 uniqueId: "MyUniqueID",
                 delay: 1000,
             },
-            hideIcons: ['fullscreen'],
+            hideIcons: ['fullscreen','side-by-side','guide'],
             element: document.getElementById("mySimplemde"),
         })
 
@@ -81,6 +98,72 @@
         })
         $("body").on("click",function (){
             $("._3P4JX").find("ul").hide();
+        })
+        // 新建文集
+        $(".add-anthology").on('click',function (){
+            $(".M8J6Q").removeClass('_1mU5v').addClass('_2a1Rp')
+        })
+        //取消新建文集
+        $(".vIzwB").on("click",function (){
+            $(".M8J6Q").removeClass('_2a1Rp').addClass('_1mU5v')
+        })
+        //提交文集
+        $(".submit_anthology").on("click",function (){
+            if(!$("#anthology").val()){
+                $('.warning').html('文集名不能为空').fadeIn()
+                setTimeout(function (){
+                    $('.warning').fadeOut()
+                },2000)
+                return
+            }
+           
+            $.ajax({
+                url: "/writer/anthology/add",
+                data: {
+                    anthology: $('#anthology').val(),
+                },
+                type: "POST",
+                cache: false,
+                dataType: 'json',
+                success: function (res) {
+                    fade(res.msg)
+                    if(res.code == 0){
+                        $(".M8J6Q").removeClass('_2a1Rp').addClass('_1mU5v');
+                        $("#anthology_ul").append('<li class="_3DM7w" title="'+$('#anthology').val()+'"><span>'+$('#anthology').val()+'</span></li>');
+                        $('#anthology').val('');
+                    }
+                },
+                error: function () {
+                    fade('ajax异常')
+                }
+            })	
+        })
+
+        //新建文章
+        $("#createArticle").on("click",function (){
+            $.ajax({
+                url: "/writer/article/create",
+                data: {},
+                type: "POST",
+                cache: false,
+                dataType: 'json',
+                success: function (res) {
+                    fade(res.msg)
+                    if(res.code == 0){
+                        $("#article-list li").removeClass("_33nt7");
+                        $("#article-list").prepend(`
+                            <li class="_25Ilv _33nt7" title="${res.data.addTime}">
+                                <i class="_13kgp"></i>
+                                <span class="NariC">${res.data.addTime}</span>
+                                <span class="hLzJv"></span>
+                            </li>
+                        `)
+                    }
+                },
+                error: function () {
+                    fade('ajax异常')
+                }
+            })
         })
     </script>
 <% include footer %>

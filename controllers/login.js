@@ -4,7 +4,9 @@ const md5 = require('md5')
 module.exports = {
   async route( ctx ) {
     await ctx.render('login',{
-      session: ctx.session.user
+      mobile: ctx.session.mobile,
+      nickname: ctx.session.nickname,
+      id: ctx.session.id
     })
   },
   async login( ctx ) {
@@ -16,7 +18,11 @@ module.exports = {
       .then(async (result) => {
         if(result.length){
           if(md5(user.pass) == result[0].password){
-            ctx.session.user = result[0].nickname
+            ctx.session = {
+              nickname: result[0].nickname,
+              mobile: result[0].mobile,
+              id: result[0].id
+            }
             ctx.body = {
               code: 0,
               msg:'登录成功'
