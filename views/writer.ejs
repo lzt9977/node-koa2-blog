@@ -15,26 +15,30 @@
         </div>
         <ul class="_3MbJ4 _3t059" id="anthology_ul">
             <% writer_menu.forEach(function(menu,i){ %>
-                <% if(i == 0){ %>
+                <% if( menu.id == writer_id ){ %>
                     <li class="_3DM7w _31PCv">
-                        <div class="_3P4JX _2VLy-">
-                            <i class="fa fa-gear"></i>
-                            <span>
-                                <ul class="_2V8zt _3FcHm _2w9pn">
-                                    <li class="_2po2r cRfUr" title="">
-                                        <i class="fa fa-pencil-square-o _22XWG"></i>修改文集
-                                    </li>
-                                    <li class="_2po2r cRfUr" title="">
-                                        <i class="fa fa-trash-o _22XWG"></i>删除文集
-                                    </li>
-                                </ul>
-                            </span>
-                        </div>
-                        <span><%= menu.menu_name %></span>
+                        <a href="/writer/<%= menu.id %>">
+                            <div class="_3P4JX _2VLy-">
+                                <i class="fa fa-gear"></i>
+                                <span>
+                                    <ul class="_2V8zt _3FcHm _2w9pn">
+                                        <li class="_2po2r cRfUr" title="">
+                                            <i class="fa fa-pencil-square-o _22XWG"></i>修改文集
+                                        </li>
+                                        <li class="_2po2r cRfUr" title="">
+                                            <i class="fa fa-trash-o _22XWG"></i>删除文集
+                                        </li>
+                                    </ul>
+                                </span>
+                            </div>
+                            <span><%= menu.menu_name %></span>
+                        </a>
                     </li>
                 <% }else{ %>
                     <li class="_3DM7w">
-                        <span><%= menu.menu_name %></span>
+                        <a href="/writer/<%= menu.id %>">
+                            <span><%= menu.menu_name %></span>
+                        </a>
                     </li>
                 <% }%>
             <% }); %>
@@ -52,14 +56,14 @@
         </div>
         <ul class="_2TxA-" id="article-list">
             <% writer_menu_article_list.forEach(function(list,i){ %>
-                <% if(i == 0){ %>
-                    <li class="_25Ilv _33nt7">
+                <% if( list.id ==  article_id ){ %>
+                    <li class="_25Ilv _33nt7" data-article-id="<%= list.id %>">
                         <i class="_13kgp"></i>
                         <span class="NariC"><%= list.title %></span>
                         <span class="hLzJv"><%= list.content %></span>
                     </li>
                 <% }else{ %>
-                    <li class="_25Ilv ">
+                    <li class="_25Ilv" data-article-id="<%= list.id %>">
                         <i class="_13kgp"></i>
                         <span class="NariC"><%= list.title %></span>
                         <span class="hLzJv"><%= list.content %></span>
@@ -69,27 +73,37 @@
         </ul>   
     </div>
     <div class="simplemde">
+        <% if( article_id ==  -1 ){ %>
+            <div class="no-data">
+                <div class="_3L3oT" autofocus=""><span>简 书</span></div>
+            </div>
+        <% }%>
+        <div class="simplemde-input-title"><div class="tips"><span>已自动保存</span></div><input type="text" value="<%= article_title %>" id="writer_article_title"></div>
         <span id="Preservation">保存文章</span>
-        <textarea id="mySimplemde"></textarea>
+        <textarea id="mySimplemde" style="display: none"><%= article_content %></textarea>
+        
     </div>
     <div class="warning"></div>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <link rel="stylesheet" href="/styles/simplemde.min.css">
     <link rel="stylesheet" href="/styles/writer.css">
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script src="/js/simplemde.min.js"></script>
+    
     <script>
         var simplemde = new SimpleMDE({
-            autofocus: true,
-            autosave: {
-                enabled: true,
-                uniqueId: "MyUniqueID",
-                delay: 1000,
-            },
             hideIcons: ['fullscreen','side-by-side','guide'],
-            element: document.getElementById("mySimplemde"),
+            element: document.getElementById("mySimplemde")
         })
+        var timer = null
+        simplemde.codemirror.on("keyup", function(){
+            clearTimeout(timer)
+            timer = setTimeout(()=>{
+                saveWriter()
+            },1000)
+        });
+       
 
         $("#Preservation").on("click",function (){
-            console.log(simplemde.value());
+            saveWriter()
         })
 
         $(".fa-gear").on("click",function (ev){
@@ -141,15 +155,19 @@
 
         //新建文章
         $("#createArticle").on("click",function (){
+            let writer_id = window.location.href.split('/')[4];
             $.ajax({
                 url: "/writer/article/create",
-                data: {},
+                data: {
+                    writer_id: writer_id
+                },
                 type: "POST",
                 cache: false,
                 dataType: 'json',
                 success: function (res) {
                     fade(res.msg)
                     if(res.code == 0){
+                        $(".no-data").remove();
                         $("#article-list li").removeClass("_33nt7");
                         $("#article-list").prepend(`
                             <li class="_25Ilv _33nt7" title="${res.data.addTime}">
@@ -158,12 +176,63 @@
                                 <span class="hLzJv"></span>
                             </li>
                         `)
+                        $("#writer_article_title").val(`${res.data.addTime}`)
+                        // window.location.href = '/writer/'+writer_id+'/'+res.data.article_id
+                        history.replaceState(null, null, '/writer/'+writer_id+'/'+res.data.article_id)
                     }
                 },
                 error: function () {
                     fade('ajax异常')
                 }
             })
+        })
+        
+        //保存文章以及标题
+        function saveWriter(){
+            let writer_id = window.location.href.split('/')[4];
+            let article_id = window.location.href.split('/')[5];
+            
+            // console.log($(".CodeMirror-code").html())
+
+            $("#article-list>li").each(function (i,v){
+                if($(v).data('article-id') == <%- article_id %>){
+                    $(v).find(".NariC").html($("#writer_article_title").val())
+                    $(v).find(".hLzJv").html(simplemde.value())
+                }
+            })
+            
+            
+            $.ajax({
+                url: "/writer/article/update",
+                data: {
+                    writer_id: writer_id,
+                    article_id: article_id,
+                    title: $("#writer_article_title").val(),
+                    content: simplemde.value()
+                },
+                type: "POST",
+                cache: false,
+                dataType: 'json',
+                success: function (res) {
+                    fade(res.msg)
+                },
+                error: function () {
+                    fade('ajax异常')
+                }
+            })
+        }   
+
+        let times
+        $("#writer_article_title").on("keyup",function(){
+            clearTimeout(times)
+            times = setTimeout(()=>{
+                saveWriter()
+            },1000)
+        })
+
+        $("#article-list>li").on("click",function (){
+            let writer_id = window.location.href.split('/')[4];
+            window.location.href = '/writer/'+writer_id+'/'+$(this).data('article-id')
         })
     </script>
 <% include footer %>

@@ -24,7 +24,7 @@
 #Preservation{
     position: absolute;
     right:0px;
-    top:0px;
+    top:60px;
     cursor: pointer;
     font-size:14px;
     z-index:123;
@@ -41,7 +41,7 @@
     display: none
 }
 .simplemde .CodeMirror{
-    height:calc(100% - 50px);
+    height:calc(100% - 110px);
 }
 .editor-toolbar{
     border-top:0
@@ -130,7 +130,8 @@
     min-height: 30px;
     max-height: 50px;
 }
-._3DM7w span {
+._3DM7w a span ,._3DM7w a{
+    color:#fff;
     display: block;
     margin-right: 20px;
     overflow: hidden;
@@ -138,14 +139,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-._3DM7w span {
-    display: block;
-    margin-right: 20px;
-    overflow: hidden;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
+
 .fa-cog:before, .fa-gear:before {
     content: "\F013";
 }
@@ -291,7 +285,7 @@
     left: 20px;
     width: 22px;
     height: 30px;
-    background: url(//cdn2.jianshu.io/writer/static/img/sprite.9d24217.png) no-repeat 0 -25px;
+    background: url(/images/sprite.9d24217.png) no-repeat 0 -25px;
     background-size: 250px;
 }
 ._25Ilv .hLzJv, ._25Ilv .NariC {
@@ -432,3 +426,68 @@
 ._2V8zt{
     display: none
 }
+.simplemde-input-title{
+    height:60px;
+    width:100%;
+    line-height: 60px;
+    border-left:1px solid #ddd;
+}
+.simplemde-input-title input{
+    width:100%;
+    border:0;
+    border-bottom:1px solid #ddd;
+    padding:0 15px;
+    font-size:30px
+};
+.editor-toolbar{
+    border-left:1px solid #ddd
+}
+
+.simplemde-input-title{
+    position: relative;
+}
+.simplemde-input-title .tips{
+    position: absolute;
+    right:0;
+    top:0;
+    line-height: 30px;
+    height:60px;
+}
+
+.simplemde-input-title .tips span{
+    padding:0 15px;
+    font-size:14px;
+
+}
+._3L3oT {
+    position: relative;
+    height: 100vh;
+    padding-top: 0;
+    background-color: #f2f2f2;
+    text-align: center;
+    z-index:12313
+}
+
+._3L3oT span {
+    font-size: 64px;
+    color: #e6e6e6;
+    text-shadow: 0 1px 0 #fff;
+}
+._3L3oT:after, ._3L3oT span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+._3L3oT:after, ._3L3oT span {
+    display: inline-block;
+    vertical-align: middle;
+}
+._3L3oT:after {
+    content: "";
+    height: 100%;
+}
+
+
+
+
+

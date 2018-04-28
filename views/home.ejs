@@ -1,7 +1,61 @@
 <%- include("header",{type:'all'}) %>
-	<header>
-		<div class="user_name">
-			首页<%= title %>
+	<link rel="stylesheet" href="/styles/home.css">
+	<link rel="stylesheet" href="/styles/markdown.css">
+	<script src="/js/Markdown.Converter.js"></script>
+	<script src="/js/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="width-limit">
+			<!-- 左上方 Logo -->
+			<a class="logo" href="/">
+				<img src="//cdn2.jianshu.io/assets/web/nav-logo-4c7bbafe27adc892f3046e6978459bac.png" alt="Nav logo">
+			</a>
+
+			<!-- 右上角 -->
+			<!-- 未登录显示登录/注册/写文章 -->
+			<a class="btn write-btn" target="_blank" href="/writer#/">
+				<i class="iconfont ic-write"></i>写文章
+			</a>
+			<a class="btn sign-up" href="/sign_up">注册</a>
+			<a class="btn log-in" href="/sign_in">登录</a>
+
+			<!-- 如果用户登录，显示下拉菜单 -->
+
+			<div class="style-mode">
+				<a class="style-mode-btn">
+					<i class="iconfont ic-navigation-mode"></i>
+				</a>
+			</div>
+			<div class="container">
+				<div class="collapse navbar-collapse" id="menu">
+					<ul class="nav navbar-nav">
+						<li class="tab active">
+							<a href="/">
+								<span class="menu-text" style="margin-left:2px">首页</span>
+								<i class="iconfont ic-navigation-discover menu-icon"></i>
+							</a>
+						</li>
+						<li class="tab ">
+							<a id="web-nav-app-download-btn" class="app-download-btn" href="/apps?utm_medium=desktop&amp;utm_source=navbar-apps">
+								<span class="menu-text">下载App</span>
+								<i class="iconfont ic-navigation-download menu-icon"></i>
+							</a>
+						</li>
+						<li class="search">
+							<form target="_blank" action="/search" accept-charset="UTF-8" method="get">
+								<input type="text" name="q" id="q" value="" autocomplete="off" placeholder="搜索" class="search-input">
+								<a class="search-btn" href="javascript:void(null)">
+									<i class="iconfont ic-search"></i>
+								</a>
+							</form>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
-    </header>
-<% include footer %>
+	</nav>
+
+	<%- list[1].content %>
+	<%- list[1].title %>
+
+	<% include footer %>

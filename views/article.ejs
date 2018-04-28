@@ -1,0 +1,13 @@
+<%- include("header",{type:'all'}) %>
+	<link rel="stylesheet" href="/styles/home.css">
+	<link rel="stylesheet" href="/styles/markdown.css">
+	<script src="/js/Markdown.Converter.js"></script>
+	<script src="/js/highlight.min.js"></script>
+	<script >hljs.initHighlightingOnLoad();</script>  
+	<header>
+        <h2><%- title %></h2>
+		<div class="markdown-body">
+			<%- content %>
+		</div>
+	</header>
+<% include footer %>
