@@ -57,3 +57,6 @@
     font-size: 12px;
     color: #969696;
 }
+.article .author .meta span {
+    padding-right: 5px;
+}

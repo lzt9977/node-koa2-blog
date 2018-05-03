@@ -3,7 +3,8 @@
     min-height: 750px;
     text-align: center;
     font-size: 14px;
-    background-color: #f1f1f1;
+    background: #f1f1f1;
+    width:100% !important
 }
 .sign:before {
     content: "";
