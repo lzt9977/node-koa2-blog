@@ -1,13 +1,44 @@
 <%- include("header",{type:'all'}) %>
 	<link rel="stylesheet" href="/styles/home.css">
 	<link rel="stylesheet" href="/styles/markdown.css">
+	<link rel="stylesheet" href="/styles/article.css">
 	<script src="/js/Markdown.Converter.js"></script>
 	<script src="/js/highlight.min.js"></script>
-	<script >hljs.initHighlightingOnLoad();</script>  
+	<script>hljs.initHighlightingOnLoad();</script>
 	<header>
-        <h2><%- title %></h2>
-		<div class="markdown-body">
-			<%- content %>
+		<div class="post article">
+			<h1 class="title">
+				<%- title %>
+			</h1>
+			<div class="author">
+				<a class="avatar" href="/u/6313f5c2a6cd">
+					<img src="//upload.jianshu.io/users/upload_avatars/2271519/7369fc4f6d24.gif?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96"
+					 alt="96">
+				</a>
+				<div class="info">
+					<span class="name">
+						<a href="javascript:void(0);"><%= author.nickname %></a>
+					</span>
+					<!-- 关注用户按钮 -->
+					<a class="btn btn-success follow">
+						<i class="iconfont ic-follow"></i>
+						<span>关注</span>
+					</a>
+					<!-- 文章数据信息 -->
+					<div class="meta">
+						<!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+						<span class="publish-time"><%= author.time %></span>
+						<span class="wordage">字数 79</span>
+						<span class="views-count">阅读 26</span>
+						<span class="comments-count">评论 0</span>
+						<span class="likes-count">喜欢 1</span>
+					</div>
+				</div>
+				<!-- 如果是当前作者，加入编辑按钮 -->
+			</div>
+			<div class="markdown-body">
+				<%- content %>
+			</div>
 		</div>
 	</header>
-<% include footer %>
+	<% include footer %>

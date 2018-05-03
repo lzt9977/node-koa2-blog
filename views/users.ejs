@@ -1,0 +1,147 @@
+<%- include header %>
+	<link rel="stylesheet" href="/styles/users.css">
+	<div class="container users">
+		<div class="article-content">
+			<div class="main-top">
+				<a class="avatar" href="/u/6313f5c2a6cd">
+					<img src="//upload.jianshu.io/users/upload_avatars/2271519/7369fc4f6d24.gif?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240"
+					 alt="240">
+				</a>
+				<button data-v-6292e408="" class="off  user-follow-button">
+					<i data-v-6292e408="" class="iconfont"></i>
+					<span data-v-6292e408="">关注</span>
+				</button>
+				<a class="btn btn-hollow" href="javascript:void(0);">发简信</a>
+
+				<div class="title">
+					<a class="name" href="/u/6313f5c2a6cd">
+						<%= result.nickname %>
+					</a>
+				</div>
+				<div class="info">
+					<ul>
+						<li>
+							<div class="meta-block">
+								<a href="/users/6313f5c2a6cd/following">
+									<p>37</p>
+									关注
+									<i class="iconfont ic-arrow"></i>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="meta-block">
+								<a href="/users/6313f5c2a6cd/followers">
+									<p>1767</p>
+									粉丝
+									<i class="iconfont ic-arrow"></i>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="meta-block">
+								<a href="/u/6313f5c2a6cd">
+									<p>228</p>
+									文章
+									<i class="iconfont ic-arrow"></i>
+								</a>
+							</div>
+						</li>
+						<li>
+							<div class="meta-block">
+								<p>271247</p>
+								<div>字数</div>
+							</div>
+						</li>
+						<li>
+							<div class="meta-block">
+								<p>3679</p>
+								<div>收获喜欢</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<ul class="trigger-menu" data-pjax-container="#list-container">
+				<li class="active">
+					<a href="javascript:void(0);">
+						<i class="iconfont ic-articles"></i> 文章</a>
+				</li>
+				<li class="">
+					<a href="javascript:void(0);">
+						<i class="iconfont ic-feed"></i> 动态</a>
+				</li>
+				<li class="">
+					<a href="javascript:void(0);">
+						<i class="iconfont ic-latestcomments"></i> 最新评论</a>
+				</li>
+				<li class="">
+					<a href="javascript:void(0);">
+						<i class="iconfont ic-hot"></i> 热门</a>
+				</li>
+			</ul>
+			<ul class="note-list" infinite-scroll-url="/">
+				<% articleList.forEach(function(list,i){ %>
+					<% if( list.cover ){ %>
+						<li class="have-img">
+					<% }else{ %>
+						<li>
+					<% }%>	
+						<% if( list.cover ){ %>
+						<a class="wrap-img" href="/article/<%= list.article_id %>" target="_blank">
+							<img class="  img-blur-done" src="<%= list.cover %>" alt="120">
+						</a>
+						<% }%>
+						<div class="content">
+							<div class="author">
+								<a class="avatar" target="_blank" href="">
+									<img src="//upload.jianshu.io/users/upload_avatars/7103517/0922c4da-e15a-429b-9798-d651fd6d9c4d.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64"
+									 alt="64">
+								</a>
+								<div class="info">
+									<a class="nickname" target="_blank" href="">
+										<%= list.users.nickname %>
+									</a>
+									<a target="_blank" href="javascript:void(0);">
+										<img width="30" height="30" class="badge-icon" data-toggle="tooltip" title="" src="//upload.jianshu.io/user_badge/94d76265-aab1-4559-8d12-1da9f6be21ce"
+										 alt="94d76265 aab1 4559 8d12 1da9f6be21ce" data-original-title="简书观察优秀作者">
+									</a>
+									<span class="time" data-shared-at="2018-04-25T16:35:27+08:00">
+										<%= list.time %>
+									</span>
+								</div>
+							</div>
+							<a class="title" target="_blank" href="/article/<%= list.article_id %>">
+								<%= list.title %>
+							</a>
+							<p class="abstract">
+								<%= list.content %>
+							</p>
+							<div class="meta">
+								<a target="_blank" href="/article/<%= list.article_id %>">
+									<i class="iconfont ic-list-read"></i> 12084
+								</a>
+								<a target="_blank" href="/article/<%= list.article_id %>">
+									<i class="iconfont ic-list-comments"></i> 145
+								</a>
+								<span>
+									<i class="iconfont ic-list-like"></i> 432</span>
+								<span>
+									<i class="iconfont ic-list-money"></i> 2</span>
+							</div>
+						</div>
+					</li>
+					<% }); %>
+			</ul>
+		</div>
+		<div class="aside">
+			<p class="title">个人介绍</p>
+
+		</div>
+	</div>
+	<script>
+		$(function () {
+
+		})
+	</script>
+	<% include footer %>

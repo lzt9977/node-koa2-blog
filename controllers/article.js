@@ -3,15 +3,22 @@ var md = require('markdown-it')();
 module.exports = {
   async route( ctx ) {
     // 查询首页所需要的数据
-    let uid = ctx.session.id
     let articleId = ctx.params.articleId
-    
-    await userModel.findDataByArticleId( uid, articleId )
+    let session = ctx.session
+    let author
+    await userModel.findDataByArticleId( articleId )
     .then(async (result) => {
         result = result[0]
+
+        await userModel.findDataByUid(result.uid)
+        .then(async (list) => {
+            author = list[0]
+        })
         await ctx.render('article',{
             content: md.render(result.content),
-            title: result.title
+            title: result.title,
+            session,
+            author
         })
     })
     

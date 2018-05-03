@@ -10,6 +10,7 @@ const login = require('./login')
 const writer = require('./writer')
 const error = require('./error')
 const article = require('./article')
+const users = require('./users')
 
 router.use(home.routes())
 router.use(register.routes())
@@ -17,5 +18,6 @@ router.use(login.routes())
 router.use(writer.routes())
 router.use(error.routes())
 router.use(article.routes())
+router.use(users.routes())
 
 module.exports = router

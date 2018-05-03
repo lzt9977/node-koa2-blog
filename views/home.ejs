@@ -1,61 +1,176 @@
-<%- include("header",{type:'all'}) %>
+<%- include("header") %>
 	<link rel="stylesheet" href="/styles/home.css">
 	<link rel="stylesheet" href="/styles/markdown.css">
 	<script src="/js/Markdown.Converter.js"></script>
 	<script src="/js/highlight.min.js"></script>
 	<script>hljs.initHighlightingOnLoad();</script>
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-		<div class="width-limit">
-			<!-- 左上方 Logo -->
-			<a class="logo" href="/">
-				<img src="//cdn2.jianshu.io/assets/web/nav-logo-4c7bbafe27adc892f3046e6978459bac.png" alt="Nav logo">
-			</a>
+	
 
-			<!-- 右上角 -->
-			<!-- 未登录显示登录/注册/写文章 -->
-			<a class="btn write-btn" target="_blank" href="/writer#/">
-				<i class="iconfont ic-write"></i>写文章
-			</a>
-			<a class="btn sign-up" href="/sign_up">注册</a>
-			<a class="btn log-in" href="/sign_in">登录</a>
-
-			<!-- 如果用户登录，显示下拉菜单 -->
-
-			<div class="style-mode">
-				<a class="style-mode-btn">
-					<i class="iconfont ic-navigation-mode"></i>
+	<div class="container">
+		<div class="article-content">
+			<div class="banner">
+				<img src="/images/banner.png">
+			</div>
+			<ul class="note-list" infinite-scroll-url="/">
+				<% articleList.forEach(function(list,i){ %>
+					<% if( list.cover ){ %>
+						<li class="have-img">
+					<% }else{ %>
+						<li>
+					<% }%>	
+						<% if( list.cover ){ %>
+						<a class="wrap-img" href="/article/<%= list.article_id %>" target="_blank">
+							<img class="  img-blur-done" src="<%= list.cover %>"
+							 alt="120">
+						</a>
+						<% }%>
+						<div class="content">
+							<div class="author">
+								<a class="avatar" target="_blank" href="">
+									<img src="//upload.jianshu.io/users/upload_avatars/7103517/0922c4da-e15a-429b-9798-d651fd6d9c4d.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64"
+									 alt="64">
+								</a>
+								<div class="info">
+									<a class="nickname" target="_blank" href=""><%= list.users.nickname %></a>
+									<a target="_blank" href="javascript:void(0);">
+										<img width="30" height="30" class="badge-icon" data-toggle="tooltip" title="" src="//upload.jianshu.io/user_badge/94d76265-aab1-4559-8d12-1da9f6be21ce"
+										 alt="94d76265 aab1 4559 8d12 1da9f6be21ce" data-original-title="简书观察优秀作者">
+									</a>
+									<span class="time" data-shared-at="2018-04-25T16:35:27+08:00"><%= list.unixtime %></span>
+								</div>
+							</div>
+							<a class="title" target="_blank" href="/article/<%= list.article_id %>">
+								<%= list.title %>
+							</a>
+							<p class="abstract">
+								<%= list.content %>
+							</p>
+							<div class="meta">
+								<a target="_blank" href="/article/<%= list.article_id %>">
+									<i class="iconfont ic-list-read"></i> 12084
+								</a>
+								<a target="_blank" href="/article/<%= list.article_id %>">
+									<i class="iconfont ic-list-comments"></i> 145
+								</a>
+								<span>
+									<i class="iconfont ic-list-like"></i> 432</span>
+								<span>
+									<i class="iconfont ic-list-money"></i> 2</span>
+							</div>
+						</div>
+					</li>
+					<% }); %>
+			</ul>
+		</div>
+		<div class="aside">
+			<div class="board">
+				<a href="javascript:void(0);">
+					<img src="/images/banner-s-3-7123fd94750759acf7eca05b871e9d17.png" alt="Banner s 3">
+				</a>
+				<a href="javascript:void(0);">
+					<img src="/images/banner-s-4-b70da70d679593510ac93a172dfbaeaa.png" alt="Banner s 4">
+				</a>
+				<a href="javascript:void(0);">
+					<img src="/images/banner-s-5-291e00e9156f30791fe24e3de9c39171.png" alt="Banner s 5">
+				</a>
+				<a href="javascript:void(0):">
+					<img src="/images/banner-s-6-c4d6335bfd688f2ca1115b42b04c28a7.png" alt="Banner s 6">
 				</a>
 			</div>
-			<div class="container">
-				<div class="collapse navbar-collapse" id="menu">
-					<ul class="nav navbar-nav">
-						<li class="tab active">
-							<a href="/">
-								<span class="menu-text" style="margin-left:2px">首页</span>
-								<i class="iconfont ic-navigation-discover menu-icon"></i>
-							</a>
-						</li>
-						<li class="tab ">
-							<a id="web-nav-app-download-btn" class="app-download-btn" href="/apps?utm_medium=desktop&amp;utm_source=navbar-apps">
-								<span class="menu-text">下载App</span>
-								<i class="iconfont ic-navigation-download menu-icon"></i>
-							</a>
-						</li>
-						<li class="search">
-							<form target="_blank" action="/search" accept-charset="UTF-8" method="get">
-								<input type="text" name="q" id="q" value="" autocomplete="off" placeholder="搜索" class="search-input">
-								<a class="search-btn" href="javascript:void(null)">
-									<i class="iconfont ic-search"></i>
-								</a>
-							</form>
-						</li>
-					</ul>
+			<a id="index-aside-download-qrbox" class="col-xs-8 download" data-toggle="popover" data-placement="top" data-html="true"
+			 data-trigger="hover" data-original-title="" title="">
+				<img class="qrcode" src="/images/download-index-side-qrcode-0a0cf38b7413c60bb8d2627fd9eebd00.png" alt="Download index side qrcode">
+				<div class="info">
+					<div class="title">下载简书手机App
+						<i class="iconfont ic-link"></i>
+					</div>
+					<div class="description">随时随地发现和创作内容</div>
 				</div>
+			</a>
+			<div class="recommended-authors">
+				<div class="title">
+					<span>推荐作者</span>
+					<a class="page-change">
+						<i class="iconfont ic-search-change" style="transform: rotate(0deg);"></i>
+						换一批
+					</a>
+				</div>
+				<ul class="list">
+					<li>
+						<a href="/u/43430fc83d41?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="avatar">
+							<img src="//upload.jianshu.io/users/upload_avatars/3980967/834e2914-c4cd-468e-8ab8-ac7993f7dcff.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
+						</a>
+						<a class="follow" state="0">
+							<i class="iconfont ic-follow"></i>关注
+						</a>
+						<a href="/u/43430fc83d41?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="name">
+							慕容歌
+						</a>
+						<p>
+							写了105.4k字 · 2.2k喜欢
+						</p>
+					</li>
+					<li>
+						<a href="/u/2399ca214fbd?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="avatar">
+							<img src="//upload.jianshu.io/users/upload_avatars/8781442/adac7350-1979-4076-add4-581969676519.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
+						</a>
+						<a class="follow" state="0">
+							<i class="iconfont ic-follow"></i>关注
+						</a>
+						<a href="/u/2399ca214fbd?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="name">
+							胡七筒
+						</a>
+						<p>
+							写了170.9k字 · 7.7k喜欢
+						</p>
+					</li>
+					<li>
+						<a href="/u/b91cc2d507d0?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="avatar">
+							<img src="//upload.jianshu.io/users/upload_avatars/8972166/869b4e0b-abe0-4162-bb5f-db76ae14946c.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
+						</a>
+						<a class="follow" state="0">
+							<i class="iconfont ic-follow"></i>关注
+						</a>
+						<a href="/u/b91cc2d507d0?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="name">
+							冰千里
+						</a>
+						<p>
+							写了252.2k字 · 2.5k喜欢
+						</p>
+					</li>
+					<li>
+						<a href="/u/1446a350e58a?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="avatar">
+							<img src="//upload.jianshu.io/users/upload_avatars/9283938/13ea8fc6-93cf-42dc-a648-fa8a5ffebb58.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
+						</a>
+						<a class="follow" state="0">
+							<i class="iconfont ic-follow"></i>关注
+						</a>
+						<a href="/u/1446a350e58a?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="name">
+							aloho
+						</a>
+						<p>
+							写了588.5k字 · 420喜欢
+						</p>
+					</li>
+					<li>
+						<a href="/u/b52ff888fd17?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="avatar">
+							<img src="//upload.jianshu.io/users/upload_avatars/3678149/b8a58e70-1126-48c9-97e2-8f21a31dfa94.png?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
+						</a>
+						<a class="follow" state="0">
+							<i class="iconfont ic-follow"></i>关注
+						</a>
+						<a href="/u/b52ff888fd17?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="name">
+							简宝玉
+						</a>
+						<p>
+							写了79.3k字 · 13.6k喜欢
+						</p>
+					</li>
+				</ul>
 			</div>
 		</div>
-	</nav>
+	</div>
 
-	<%- list[1].content %>
-	<%- list[1].title %>
+
 
 	<% include footer %>
