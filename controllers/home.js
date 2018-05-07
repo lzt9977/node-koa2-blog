@@ -7,7 +7,7 @@ module.exports = {
     let session = ctx.session
     let uid = ctx.session.id
     let nickname = ctx.session.nickname
-    let articleList
+    let articleList,users
     
     await userModel.findDataArticle()
     .then(async (result) => {
@@ -38,9 +38,16 @@ module.exports = {
               });
               articleList = result
     })
+
+    await userModel.findDataByUid(uid)
+    .then(async (result) => {
+      users = result[0]
+    })
+
     await ctx.render('home',{
       articleList,
-      session
+      session,
+      users
     })
   }
 }

@@ -5,7 +5,7 @@ module.exports = {
     // 查询首页所需要的数据
     let articleId = ctx.params.articleId
     let session = ctx.session
-    let author
+    let author,users
     await userModel.findDataByArticleId( articleId )
     .then(async (result) => {
         result = result[0]
@@ -14,11 +14,17 @@ module.exports = {
         .then(async (list) => {
             author = list[0]
         })
+
+        await userModel.findDataByUid(ctx.session.id)
+        .then(async (result) => {
+            users = result[0]
+        })
         await ctx.render('article',{
             content: md.render(result.content),
             title: result.title,
             session,
-            author
+            author,
+            users
         })
     })
     

@@ -12,13 +12,13 @@
 				<%- title %>
 			</h1>
 			<div class="author">
-				<a class="avatar" href="/u/6313f5c2a6cd">
-					<img src="//upload.jianshu.io/users/upload_avatars/2271519/7369fc4f6d24.gif?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96"
+				<a class="avatar" href="/users/<%= author.id %>">
+					<img src="<%= author.avatar %>"
 					 alt="96">
 				</a>
 				<div class="info">
 					<span class="name">
-						<a href="javascript:void(0);"><%= author.nickname %></a>
+						<a href="/users/<%= author.id %>"><%= author.nickname %></a>
 					</span>
 					<!-- 关注用户按钮 -->
 					<a class="btn btn-success follow">

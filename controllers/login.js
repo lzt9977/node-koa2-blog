@@ -9,6 +9,10 @@ module.exports = {
       id: ctx.session.id
     })
   },
+  async sign_out (ctx) {
+    ctx.session = null
+    ctx.response.redirect('/')
+  },
   async login( ctx ) {
     let user = {
         name: ctx.request.body.nickname,
@@ -19,8 +23,6 @@ module.exports = {
         if(result.length){
           if(md5(user.pass) == result[0].password){
             ctx.session = {
-              nickname: result[0].nickname,
-              mobile: result[0].mobile,
               id: result[0].id
             }
             ctx.body = {

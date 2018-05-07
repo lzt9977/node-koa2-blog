@@ -1,0 +1,168 @@
+<%- include header %>
+    <%- include("nav",{type:'all'}) %>
+        <link rel="stylesheet" href="/styles/search.css">
+        <div class="container search-box search">
+            <div class="row">
+                <div class="aside">
+                    <div>
+                        <ul class="menu">
+                            <li class="active">
+                                <a>
+                                    <div class="setting-icon">
+                                        <i class="iconfont ic-search-note"></i>
+                                    </div>
+                                    <span>文章</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a>
+                                    <div class="setting-icon">
+                                        <i class="iconfont ic-search-user"></i>
+                                    </div>
+                                    <span>用户</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a>
+                                    <div class="setting-icon">
+                                        <i class="iconfont ic-search-collection"></i>
+                                    </div>
+                                    <span>专题</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a>
+                                    <div class="setting-icon">
+                                        <i class="iconfont ic-search-notebook"></i>
+                                    </div>
+                                    <span>文集</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xs-16 col-xs-offset-8 main">
+                    <div class="top">
+
+                            
+                        <% if( userList.length>0 ){ %>
+                        <div class="relevant">
+                            <div class="title">相关用户</div>
+                            <a class="function-btn">查看全部
+                                <i class="iconfont ic-arrow"></i>
+                            </a>
+                            <div class="container-fluid list">
+                                <% userList.forEach(function(list,i){ %>
+                                    <div class="col-xs-8">
+                                        <a href="/users/<%= list.id %>" target="_blank" class="avatar">
+                                            <img src="<%= list.avatar %>">
+                                        </a>
+                                        <div class="info">
+                                            <a href="/users/<%= list.id %>" target="_blank" class="name"><%= list.nickname %></a>
+                                            <div class="meta">
+                                                写了 0 字・0 喜欢
+                                            </div>
+                                        </div>
+                                    </div>
+                                <% }); %>
+                            </div>
+                        </div>
+                        <% }%>
+                        <div class="relevant">
+                            <div class="title">相关专题</div>
+                            <a class="function-btn">查看全部
+                                <i class="iconfont ic-arrow"></i>
+                            </a>
+                            <div class="container-fluid list">
+                                <div class="col-xs-8">
+                                    <a href="javascript:void(0);" target="_blank" class="avatar-collection">
+                                        <img src="//upload.jianshu.io/collections/images/464354/crop1512912872724.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144">
+                                    </a>
+                                    <div class="info">
+                                        <a href="javascript:void(0);" target="_blank" class="name">node.js</a>
+                                        <div class="meta">
+                                            1753 文章・899 关注
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <a href="javascript:void(0);" target="_blank" class="avatar-collection">
+                                        <img src="//upload.jianshu.io/collections/images/278963/%E5%B1%B1%E8%A5%BF.jpeg?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144">
+                                    </a>
+                                    <div class="info">
+                                        <a href="javascript:void(0);" target="_blank" class="name">koa2</a>
+                                        <div class="meta">
+                                            800 文章・862 关注
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-8">
+                                    <a href="javascript:void(0);" target="_blank" class="avatar-collection">
+                                        <img src="//upload.jianshu.io/collections/images/466157/%E9%99%A2%E5%BE%BD.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/144/h/144">
+                                    </a>
+                                    <div class="info">
+                                        <a href="javascript:void(0);" target="_blank" class="name">egg</a>
+                                        <div class="meta">
+                                            695 文章・669 关注
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-content">
+                        <ul class="note-list">
+                            <% article.forEach(function(list,i){ %>
+                            <li>
+                                <div class="content">
+                                    <div class="author">
+                                        <a href="/users/<%= list.users.id %>" target="_blank" class="avatar">
+                                            <img src="<%= list.users.avatar %>">
+                                        </a>
+                                        <div class="info">
+                                            <a href="/users/<%= list.users.id %>" target="_blank" class="nickname"><%= list.users.nickname %></a>
+                                            <span class="time">
+                                                <%= list.time %>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <a href="/article/<%= list.article_id %>" target="_blank" class="title"><%= list.title %></a>
+                                    <p class="abstract"><%= list.content %></p>
+                                    <div class="meta">
+                                        <a href="javascript:void(0);" target="_blank">
+                                            <i class="iconfont ic-list-read"></i> 469
+                                        </a>
+                                        <a href="javascript:void(0);" target="_blank">
+                                            <i class="iconfont ic-list-comments"></i> 0
+                                        </a>
+                                        <span>
+                                            <i class="iconfont ic-list-like"></i> 2
+                                        </span>
+                                        <!---->
+                                    </div>
+                                </div>
+                            </li>
+                            <% }); %>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(function () {
+                let search_str = getUrlParam('q');
+                $("#q").val(search_str);
+                
+                $(".note-list li").each(function (){
+                    let str = $(this).find(".abstract").html();
+                    $(this).find(".abstract").html(str.split(search_str).join('<em class="search-result-highlight">'+search_str+'</em>'));
+
+                    let title = $(this).find(".title").html();
+                    $(this).find(".title").html(title.split(search_str).join('<em class="search-result-highlight">'+search_str+'</em>'))
+                })
+
+                
+            })
+        </script>
+        <% include footer %>

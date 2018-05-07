@@ -27,16 +27,15 @@ module.exports = {
                     msg:'必填项不能为空'
                 };
             } else { 
-              await userModel.insertData([user.name, md5(user.pass), user.mobile, moment().format('YYYY-MM-DD HH:mm:ss'), moment().format('X')])
+              await userModel.insertData([user.name, md5(user.pass), user.mobile, moment().format('YYYY-MM-DD HH:mm:ss'), moment().format('X'),'//cdn2.jianshu.io/assets/default_avatar/15-a7ac401939dd4df837e3bbf82abaa2a8.jpg'])
                   .then(res=>{
                     ctx.body = {
                       code: 0,
                       msg:'注册成功'
-                    };
-                    
-                    
+                    }
+                    console.log(res)
                   })
-
+                  
                   await userModel.findDataByName(user.name)
                     .then(async (result) => {
                         await userModel.createByWriterArticleMenu([result[0].id,'日记本'])

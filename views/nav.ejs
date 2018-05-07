@@ -1,29 +1,89 @@
+
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="width-limit">
         <!-- 左上方 Logo -->
         <a class="logo" href="/">
-            <img src="//cdn2.jianshu.io/assets/web/nav-logo-4c7bbafe27adc892f3046e6978459bac.png" alt="Nav logo">
+            <img src="/images/nav-logo-4c7bbafe27adc892f3046e6978459bac.png" alt="Nav logo">
         </a>
-
-
-
 
         <!-- 右上角 -->
         <!-- 未登录显示登录/注册/写文章 -->
-        <a class="btn write-btn" target="_blank" href="/writer#/">
+        <a class="btn write-btn" target="_blank" href="/writer/">
             <i class="iconfont ic-write"></i>写文章
         </a>
 
-        <% if( session.nickname ){ %>
+                  
+        <% if( session.id ){ %>
+        <div class="user">
+            <div data-hover="dropdown">
+                <a class="avatar" href="/users/<%= users.id %>">
+                    <img src="<%= users.avatar %>"
+                        alt="120">
+                </a>
+            </div>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="/users/<%= users.id %>">
+                        <i class="iconfont ic-navigation-profile"></i>
+                        <span>我的主页</span>
+                    </a>
+                </li>
+                <li>
+                    <!-- TODO bookmarks_path -->
+                    <a href="javascript:void(0);">
+                        <i class="iconfont ic-navigation-mark"></i>
+                        <span>收藏的文章</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">
+                        <i class="iconfont ic-navigation-like"></i>
+                        <span>喜欢的文章</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">
+                        <i class="iconfont ic-paid"></i>
+                        <span>已购内容</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">
+                        <i class="iconfont ic-navigation-wallet"></i>
+                        <span>我的钱包</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/settings">
+                        <i class="iconfont ic-navigation-settings"></i>
+                        <span>设置</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);">
+                        <i class="iconfont ic-navigation-feedback"></i>
+                        <span>帮助与反馈</span>
+                    </a>
+                </li>
+                <li>
+                    <a rel="nofollow" data-method="delete" href="/sign_out">
+                        <i class="iconfont ic-navigation-signout"></i>
+                        <span>退出</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
-            <a class="btn sign-up" href="#">
-                <%= session.nickname %>
-            </a>
+        
+
+            
+               
+           
 
             <% }else{ %>
 
-                <a class="btn sign-up" href="/sign_up">注册</a>
-                <a class="btn log-in" href="/sign_in">登录</a>
+                <a class="btn sign-up" href="/register">注册</a>
+                <a class="btn log-in" href="/login">登录</a>
 
                 <% }%>
 
@@ -43,7 +103,7 @@
                                     </a>
                                 </li>
                                 <li class="tab ">
-                                    <a id="web-nav-app-download-btn" class="app-download-btn" href="/apps?utm_medium=desktop&amp;utm_source=navbar-apps">
+                                    <a id="web-nav-app-download-btn" class="app-download-btn" href="javascript:void(0);">
                                         <span class="menu-text">下载App</span>
                                         <i class="iconfont ic-navigation-download menu-icon"></i>
                                     </a>
@@ -61,3 +121,18 @@
                     </div>
     </div>
 </nav>
+<script>
+    $(function (){
+        $(".user").hover(function (){
+            $(this).find(".dropdown-menu").show()
+        },function (){
+            $(this).find(".dropdown-menu").hide()
+        })
+
+        $(".search-btn").on("click",function (){
+            if($("#q").val()){
+                window.location.href = '/search?q='+$("#q").val()
+            }
+        })
+    })
+</script>

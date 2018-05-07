@@ -1,0 +1,212 @@
+.setting .row {
+    padding-top: 30px;
+}
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.setting .aside {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    margin: 86px 0 0;
+    padding: 0 0 30px;
+    width: 280px;
+    overflow: auto;
+}
+.setting .aside ul {
+    list-style: none;
+}
+.setting .aside li.active a, .setting .aside li:hover a {
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+.setting .aside a {
+    padding: 10px 15px;
+    font-size: 15px;
+    display: block;
+}
+.setting .aside .setting-icon {
+    margin-right: 15px;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    color: #fff;
+    background-color: #a0a0a0;
+    border-radius: 4px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.setting .aside .setting-icon i {
+    margin: 6px 0 0 1px;
+    font-size: 18px;
+    display: block;
+}
+.ic-settings-basic:before {
+    content: "\E63C";
+}
+.setting .aside span {
+    vertical-align: middle;
+}
+.ic-settings-profile:before {
+    content: "\E63B";
+}
+.ic-settings-verify:before {
+    content: "\E63D";
+}
+.ic-settings-block:before {
+    content: "\E63F";
+}
+.ic-settings-money:before {
+    content: "\E63A";
+}
+.ic-settings-account:before {
+    content: "\E63E";
+}
+.setting .main {
+    padding-left: 0;
+    padding-top:30px
+}
+.col-xs-offset-8 {
+    margin-left: 33.33333%;
+}
+.col-xs-16 {
+    width: 66.66667%;
+}
+.setting .main table {
+    width: 100%;
+}
+table {
+    background-color: transparent;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.setting .main tr:last-child {
+    border: none;
+}
+.setting .main tr {
+    border-bottom: 1px solid #f0f0f0;
+}
+.setting .main .setting-head {
+    width: 150px;
+}
+.setting .main .base tr:first-child {
+    border: none;
+}
+.setting .main tr {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.setting .main td {
+    padding: 20px 0;
+}
+.setting .main .avatar {
+    width: 100px;
+    height: 100px;
+}
+
+.setting .main td {
+    padding: 20px 0;
+}
+.setting .main .btn-delete, .setting .main .btn-hollow {
+    font-size: 14px;
+}
+.btn-hollow {
+    border: 1px solid rgba(59,194,29,.7);
+    color: #42c02e!important;
+}
+
+.setting .main .hide {
+    position: absolute;
+    display: block!important;
+    width: 82px;
+    opacity: 0;
+}
+.setting .main .setting-title {
+    font-size: 15px;
+    color: #969696;
+}
+.setting .main td {
+    padding: 20px 0;
+}
+.setting .main input[type=email], .setting .main input[type=text] {
+    padding: 5px 10px;
+    font-size: 15px;
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    background-color: hsla(0,0%,71%,.1);
+}
+.setting .main .setted div {
+    font-size: 15px;
+    display: inline-block;
+}
+.setting .main .setting-head {
+    width: 150px;
+}
+.setting .main .setting-save {
+    width: 100px;
+    margin: 30px 0 60px;
+    border-radius: 20px;
+    border: none;
+}
+.btn-success {
+    border-radius: 40px;
+    color: #fff;
+    background-color: #42c02e;
+    border-color: #42c02e;
+}
+.setting .main textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 8px 10px;
+    font-size: 15px;
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    background-color: hsla(0,0%,71%,.1);
+    display: block;
+    resize: none;
+    outline-style: none;
+}
+
+.setting .main input[type=email], .setting .main input[type=text] {
+    padding: 5px 10px;
+    font-size: 15px;
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    background-color: hsla(0,0%,71%,.1);
+}
+.setting .main span {
+    margin: 0 20px 0 6px;
+    font-size: 15px;
+    vertical-align: middle;
+}
+.setting .main input[name=website] {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.setting .main p {
+    margin: 0;
+    padding: 8px 0 0;
+    font-size: 12px;
+    color: #969696;
+    clear: both;
+}
+.pull-right {
+    float: right!important;
+}
+.setting .main .setting-input {
+    line-height: 33px;
+}
+.setting .main .setting-title {
+    font-size: 15px;
+    color: #969696;
+}
+.setting .main td {
+    padding: 20px 0;
+}
+.pull-left {
+    float: left!important;
+}

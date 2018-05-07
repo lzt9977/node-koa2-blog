@@ -731,3 +731,120 @@ nav form .search-btn {
 img {
     vertical-align: middle;
 }
+nav .user {
+    float: right;
+    height: 100%;
+}
+nav .user .avatar {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin: 8px 28px 8px 20px;
+}
+nav .user .avatar:before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    right: -14px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #999;
+}
+nav .user .dropdown-menu {
+    left: auto;
+    border-radius: 0 0 4px 4px;
+}
+.dropdown-menu {
+    margin-top: 0;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,.1));
+    -webkit-filter: drop-shadow(0 2px 8px rgba(0,0,0,.1));
+}
+.dropdown-menu {
+    position: absolute;
+    top: 90%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    list-style: none;
+    font-size: 14px;
+    text-align: left;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    background-clip: padding-box;
+}
+nav .user .dropdown-menu a {
+    padding: 10px 20px;
+    line-height: 30px;
+}
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857;
+    color: #333;
+    white-space: nowrap;
+}
+nav .user .dropdown-menu i {
+    margin-right: 15px;
+    font-size: 18px;
+    color: #ea6f5a;
+    vertical-align: middle;
+}
+nav .user .dropdown-menu span {
+    vertical-align: middle;
+}
+nav .user:hover {
+    background-color: #f5f5f5;
+}
+nav .user .dropdown-menu a:hover {
+    background-color: #f5f5f5;
+}
+.ic-navigation-profile:before {
+    content: "\E650";
+}
+.ic-navigation-mark:before {
+    content: "\E64F";
+}
+.ic-navigation-like:before {
+    content: "\E654";
+}
+.ic-paid:before {
+    content: "\E6F0";
+}
+.ic-navigation-wallet:before {
+    content: "\E653";
+}
+.ic-navigation-settings:before {
+    content: "\E652";
+}
+.ic-navigation-feedback:before {
+    content: "\E655";
+}
+.ic-navigation-signout:before {
+    content: "\E61D";
+}
+.navbar-fixed-bottom, .navbar-fixed-top {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+.container:after, .container:before {
+    content: " ";
+    display: table;
+}
+
+
+.home{
+    padding-top:90px
+}

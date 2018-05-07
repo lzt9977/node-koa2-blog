@@ -19,6 +19,7 @@ const sessionMysqlConfig= {
     password: config.database.PASSWORD,
     database: config.database.DATABASE,
     host: config.database.HOST,
+    charset:'utf8'
 }
 
 //存放sessionId的cookie配置

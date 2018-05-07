@@ -4,6 +4,7 @@ const moment = require('moment')
 module.exports = {
     async route( ctx ) {
       let session = ctx.session
+      
       let usersId = ctx.params.usersId  
       let articleList
       
@@ -30,12 +31,16 @@ module.exports = {
                 });
 
                 articleList = list
-                console.log(list)
             })
+            await userModel.findDataByUid(usersId)
+                .then(async (result) => {
+                    users = result[0]
+                })
             await ctx.render('users',{
                 session,
                 result,
-                articleList
+                articleList,
+                users
             })
         })
       

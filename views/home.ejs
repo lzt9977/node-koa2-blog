@@ -7,7 +7,7 @@
 	<script>hljs.initHighlightingOnLoad();</script>
 	
 
-	<div class="container">
+	<div class="container home">
 		<div class="article-content">
 			<div class="banner">
 				<img src="/images/banner.png">
@@ -27,13 +27,13 @@
 						<% }%>
 						<div class="content">
 							<div class="author">
-								<a class="avatar" target="_blank" href="">
-									<img src="//upload.jianshu.io/users/upload_avatars/7103517/0922c4da-e15a-429b-9798-d651fd6d9c4d.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64"
+								<a class="avatar" target="_blank" href="/users/<%= list.users.id %>">
+									<img src="<%= list.users.avatar %>"
 									 alt="64">
 								</a>
 								<div class="info">
-									<a class="nickname" target="_blank" href=""><%= list.users.nickname %></a>
-									<a target="_blank" href="javascript:void(0);">
+									<a class="nickname" target="_blank" href="/users/<%= list.users.id %>"><%= list.users.nickname %></a>
+									<a target="_blank" href="/users/<%= list.users.id %>">
 										<img width="30" height="30" class="badge-icon" data-toggle="tooltip" title="" src="//upload.jianshu.io/user_badge/94d76265-aab1-4559-8d12-1da9f6be21ce"
 										 alt="94d76265 aab1 4559 8d12 1da9f6be21ce" data-original-title="简书观察优秀作者">
 									</a>

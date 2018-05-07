@@ -48,6 +48,8 @@
 	</div>
 	<script>
 		$(function (){
+			var parameter = getUrlParam('redirect');
+			
 			$('#submit-login').on('click',function (){
 				if ($('#user_nickname').val().trim() == '') {
 					fade('请输入用户名！')

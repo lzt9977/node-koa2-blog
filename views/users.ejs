@@ -2,11 +2,11 @@
 
 <%- include("nav",{type:'all'}) %>
 	<link rel="stylesheet" href="/styles/users.css">
-	<div class="container users">
+	<div class="container users home">
 		<div class="article-content">
 			<div class="main-top">
-				<a class="avatar" href="/u/6313f5c2a6cd">
-					<img src="//upload.jianshu.io/users/upload_avatars/2271519/7369fc4f6d24.gif?imageMogr2/auto-orient/strip|imageView2/1/w/240/h/240"
+				<a class="avatar" href="">
+					<img src="<%= users.avatar %>"
 					 alt="240">
 				</a>
 				<button data-v-6292e408="" class="off  user-follow-button">
@@ -16,7 +16,7 @@
 				<a class="btn btn-hollow" href="javascript:void(0);">发简信</a>
 
 				<div class="title">
-					<a class="name" href="/u/6313f5c2a6cd">
+					<a class="name" href="">
 						<%= result.nickname %>
 					</a>
 				</div>
@@ -97,7 +97,7 @@
 						<div class="content">
 							<div class="author">
 								<a class="avatar" target="_blank" href="">
-									<img src="//upload.jianshu.io/users/upload_avatars/7103517/0922c4da-e15a-429b-9798-d651fd6d9c4d.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/64/h/64"
+									<img src="<%= list.users.avatar %>"
 									 alt="64">
 								</a>
 								<div class="info">

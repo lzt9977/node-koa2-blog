@@ -1,5 +1,6 @@
 const userModel = require('../lib/mysql.js')
 const moment = require('moment')
+const isSign = require('../middlewares/isSign.js').isSign
 module.exports = {
     async route(ctx) {
         //文集列表  文集下的文章列表  具体的文章标题  文章内容  文集id
@@ -12,6 +13,8 @@ module.exports = {
         let articleId = ctx.params.articleId
         // session
         let session = ctx.session
+
+        await isSign(ctx)
 
         //查询这个id下的所有文集栏目
         await userModel.userFindDataByWriter(uid)
@@ -32,8 +35,9 @@ module.exports = {
                 await userModel.findDataByWriterMenu(uid, menuId)
                     .then(async (result) => {
                         if (result.length < 1) {
-                            ctx.response.redirect('/writer/' + writer_menu[0].id)
-                            console.log('重定向1')
+                            if(writer_menu.length>0){
+                                ctx.response.redirect('/writer/' + writer_menu[0].id)
+                            }
                         }
                     })
 
@@ -105,8 +109,9 @@ module.exports = {
             pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
         }
         let article_id = unixtime + pwd
-
-        await userModel.createWriterArticle([ ctx.session.id, writer_id, article_id, time, '', time, unixtime ])
+        
+      
+        await userModel.createWriterArticle([ uid, writer_id, article_id, time, , time, unixtime ])
             .then(async res=>{
                 await userModel.findDataByWriterArticleList(uid,writer_id)
                 .then(async (result) => {
