@@ -38,7 +38,10 @@ let cookie = {
 // 配置session中间件
 app.use(session({
     key: 'SESSION_ID',
-    store: new MysqlStore(sessionMysqlConfig)
+    store: new MysqlStore(sessionMysqlConfig),
+    cookie: {
+        maxage:24*60*60*1000
+    }
 }))
 
 

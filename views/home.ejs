@@ -97,76 +97,22 @@
 					</a>
 				</div>
 				<ul class="list">
+					<% author.forEach(function(list,i){ %>
 					<li>
-						<a href="/u/43430fc83d41?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="avatar">
-							<img src="//upload.jianshu.io/users/upload_avatars/3980967/834e2914-c4cd-468e-8ab8-ac7993f7dcff.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
+						<a href="/users/<%= list.id %>" target="_blank" class="avatar">
+							<img src="<%= list.avatar %>">
 						</a>
 						<a class="follow" state="0">
 							<i class="iconfont ic-follow"></i>关注
 						</a>
-						<a href="/u/43430fc83d41?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="name">
-							慕容歌
+						<a href="/users/<%= list.id %>" target="_blank" class="name">
+							<%= list.nickname %>
 						</a>
 						<p>
 							写了105.4k字 · 2.2k喜欢
 						</p>
 					</li>
-					<li>
-						<a href="/u/2399ca214fbd?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="avatar">
-							<img src="//upload.jianshu.io/users/upload_avatars/8781442/adac7350-1979-4076-add4-581969676519.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
-						</a>
-						<a class="follow" state="0">
-							<i class="iconfont ic-follow"></i>关注
-						</a>
-						<a href="/u/2399ca214fbd?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="name">
-							胡七筒
-						</a>
-						<p>
-							写了170.9k字 · 7.7k喜欢
-						</p>
-					</li>
-					<li>
-						<a href="/u/b91cc2d507d0?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="avatar">
-							<img src="//upload.jianshu.io/users/upload_avatars/8972166/869b4e0b-abe0-4162-bb5f-db76ae14946c.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
-						</a>
-						<a class="follow" state="0">
-							<i class="iconfont ic-follow"></i>关注
-						</a>
-						<a href="/u/b91cc2d507d0?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="name">
-							冰千里
-						</a>
-						<p>
-							写了252.2k字 · 2.5k喜欢
-						</p>
-					</li>
-					<li>
-						<a href="/u/1446a350e58a?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="avatar">
-							<img src="//upload.jianshu.io/users/upload_avatars/9283938/13ea8fc6-93cf-42dc-a648-fa8a5ffebb58.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
-						</a>
-						<a class="follow" state="0">
-							<i class="iconfont ic-follow"></i>关注
-						</a>
-						<a href="/u/1446a350e58a?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="name">
-							aloho
-						</a>
-						<p>
-							写了588.5k字 · 420喜欢
-						</p>
-					</li>
-					<li>
-						<a href="/u/b52ff888fd17?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="avatar">
-							<img src="//upload.jianshu.io/users/upload_avatars/3678149/b8a58e70-1126-48c9-97e2-8f21a31dfa94.png?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96">
-						</a>
-						<a class="follow" state="0">
-							<i class="iconfont ic-follow"></i>关注
-						</a>
-						<a href="/u/b52ff888fd17?utm_source=desktop&amp;utm_medium=index-users" target="_blank" class="name">
-							简宝玉
-						</a>
-						<p>
-							写了79.3k字 · 13.6k喜欢
-						</p>
-					</li>
+					<% }); %>
 				</ul>
 			</div>
 		</div>

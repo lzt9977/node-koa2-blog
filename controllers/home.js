@@ -7,7 +7,8 @@ module.exports = {
     let session = ctx.session
     let uid = ctx.session.id
     let nickname = ctx.session.nickname
-    let articleList,users
+    let articleList,users,author
+    
     
     await userModel.findDataArticle()
     .then(async (result) => {
@@ -39,6 +40,12 @@ module.exports = {
               articleList = result
     })
 
+    await userModel.findUsersAuthor().then(async (result) => {
+      result.sort(function(){ return 0.5 - Math.random() }) 
+      result.length = 5
+      author = result
+    })
+
     await userModel.findDataByUid(uid)
     .then(async (result) => {
       users = result[0]
@@ -47,7 +54,8 @@ module.exports = {
     await ctx.render('home',{
       articleList,
       session,
-      users
+      users,
+      author
     })
   }
 }
